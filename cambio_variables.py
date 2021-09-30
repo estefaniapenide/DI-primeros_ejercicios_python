@@ -8,6 +8,7 @@ b=float(input("Introduzca la variable B: "))
 
 #También podría haber hecho a,b=b,a
 
+
 c=a
 a=b
 b=c
