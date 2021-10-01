@@ -10,31 +10,28 @@ hora=int(salida[0]+salida[1])
 minutos=int(salida[3]+salida[4])
 segundos=int(salida[6]+salida[7])
 
-T=int(input("Introduzca el tiempo de viaje en segundos: "))
 
-if(T>=3600):
-    horasdemas=T//3600
-    T=T%3600
-    minutosdemas=T//60
-    segundosdemas=T%60
-if(T>=60 and T<3600):
-    horasdemas=0
-    minutosdemas=T//60
-    segundosdemas=T%60
-else:
-    horasdemas=0
-    minutosdemas=0
-    segundosdemas=T
+if(hora>24 or minutos > 60 or segundos > 60):
+    print("No ha introducido un formato de hora válido")
+else: 
 
-hora= hora + horasdemas
-minutos = minutos + minutosdemas
-segundos = segundos + segundosdemas
+    horasalida=hora*3600+minutos*60+segundos
 
+    T=int(input("Introduzca el tiempo de viaje en segundos: "))
 
-print("\nEl ciclista llegará a la ciudad B a las %d:%e:%f" % (hora,minutos,segundos))
+    horallegada=horasalida+T
 
+    hora = horallegada//3600 
+    minutos= (horallegada % 3600) // 60 
+    segundos =((horallegada % 3600) % 60) 
 
-
-
-   
-
+    if(hora>24):
+        dia = hora // 24
+        hora=hora%24
+    
+        if(dia==1):
+            print("\nEl ciclista llegará a la ciudad B al día siguiente a las ",hora,":",minutos,":",segundos)
+        else:
+            print("\nEl ciclista llegará a la ciudad B",dia,"días después a las ",hora,":",minutos,":",segundos)
+    else:
+        print("\nEl ciclista llegará a la ciudad B a las ",hora,":",minutos,":",segundos)
