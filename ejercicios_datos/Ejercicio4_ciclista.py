@@ -11,7 +11,7 @@ minutos=int(salida[3]+salida[4])
 segundos=int(salida[6]+salida[7])
 
 
-if(hora>24 or minutos > 60 or segundos > 60):
+if(hora > 24 or minutos > 60 or segundos > 60):
     print("No ha introducido un formato de hora válido")
 else: 
 
