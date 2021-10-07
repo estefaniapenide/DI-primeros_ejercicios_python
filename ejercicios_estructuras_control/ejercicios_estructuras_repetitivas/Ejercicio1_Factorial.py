@@ -10,8 +10,6 @@ if(num>=0):
     while(num >= contador):
         factorial=factorial*contador
         contador=contador+1
-        print(factorial)
-
     print("%d!=%s" % (num,factorial))
 else:
     print("El cálculo del factorial de un número solo se aplica a números enteros positivos y el cero.")

@@ -3,7 +3,8 @@
 
 print("SUMA Y MEDIA DE NÚMEROS")
 
-print("Para calcular la suma y la media de varios números, váyalos introduciendo según se van pidiendo.\nCuando no quiera introducir más, pulse 0.")
+print('''Para calcular la suma y la media de varios números, váyalos introduciendo según se van pidiendo.
+Cuando no quiera introducir más, pulse 0.\n''')
 num=""
 suma=0
 contador=1
@@ -12,5 +13,5 @@ while(num!=0):
     suma=suma+num
     contador=contador+1
 media=suma/(contador-2)
-print("Suma: %s"%(suma))
+print("\nSuma: %s"%(suma))
 print("Media: %.2f"%(media))
