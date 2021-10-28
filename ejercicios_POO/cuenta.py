@@ -2,9 +2,9 @@ from persona import Persona
 
 class Cuenta:
 
-    def __init__(self,titular:Persona,cantidad=0):
+    def __init__(self,titular,cantidad=0):
         self.titular=titular
-        self.cantidad=cantidad
+        self.__cantidad=cantidad
 
     @property
     def titular(self):
@@ -19,14 +19,20 @@ class Cuenta:
         return self.__cantidad
 
     def retirar(self,importe):
-        self.__cantidad=self.__cantidad-importe
+        if(importe>0):
+            self.__cantidad=self.__cantidad-importe
+            print("Importe retirado: "+str(importe)+"€")
+        else:
+            self.__cantidad=self.__cantidad
+            print("No es posible retirar "+str(importe)+"€")
 
     def ingresar(self,importe):
         if(importe<0):
             self.__cantidad=self.__cantidad
+            print("No es posible ingresar "+str(importe)+"€")
         else:
             self.__cantidad=self.__cantidad+importe
+            print("Importe ingresado: "+str(importe)+"€")
     
     def mostrar(self):
-        return self.__titular+" "+str(self.__cantidad)+"€"
- 
+        return self.__titular.mostrar()+" "+str(self.__cantidad)+"€"

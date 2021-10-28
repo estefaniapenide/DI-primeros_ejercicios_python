@@ -52,7 +52,8 @@ class Persona:
         if(edad.isdigit() and int(edad)>=0):
             self.__edad=edad
         else:
-            self.__edad=""
+            self.__edad="*"
+            print("LA EDAD DEBE SER UN NÚMERO ENTERO POSITIVO")
 
     @property
     def dni(self):
@@ -65,19 +66,17 @@ class Persona:
             i=0
             while(i<8):
                 numero=numero+dni[i]
-                i+=1
-                
+                i+=1               
             letra=dni[8]
-
             dniCorrecto=Dni(numero)
             if(dniCorrecto.letra==letra):
                 self.__dni=dni
         else:
-            self.__dni=""
-
+            self.__dni="*FALTA DNI*"
+            print("DNI INCORRECTO")
     
     def mostrar(self):
-        return self.nombre+" "+str(self.edad)+" "+self.dni
+        return self.nombre+" ("+str(self.edad)+") "+self.dni
 
     def esMayorDeEdad(self):
         esMayor=False
@@ -106,14 +105,18 @@ class Cuenta:
     def retirar(self,importe):
         if(importe>0):
             self.__cantidad=self.__cantidad-importe
+            print("Importe retirado: "+str(importe)+"€")
         else:
             self.__cantidad=self.__cantidad
+            print("No es posible retirar "+str(importe)+"€")
 
     def ingresar(self,importe):
         if(importe<0):
             self.__cantidad=self.__cantidad
+            print("No es posible ingresar "+str(importe)+"€")
         else:
             self.__cantidad=self.__cantidad+importe
+            print("Importe ingresado: "+str(importe)+"€")
     
     def mostrar(self):
         return self.__titular.mostrar()+" "+str(self.__cantidad)+"€"
@@ -121,7 +124,7 @@ class Cuenta:
 class CuentaJoven(Cuenta):
 
     def __init__(self,titular,cantidad=0,bonificacion=0):
-        super.__init__(titular,cantidad)
+        super().__init__(titular,cantidad)
         self.bonificacion=bonificacion
     
     @property
@@ -134,59 +137,22 @@ class CuentaJoven(Cuenta):
 
     def esTitularValido(self):
         titularValido=False
-        if self.__titular.esMayorDeEdad() and (self.__titular.edad)<25:
+        if super().titular.esMayorDeEdad() and int((super().titular.edad))<25:
             titularValido=True
         return titularValido
 
-    @titular.setter
-    def titular(self,titular):
-        if(esTitularValido()):
-            self.__titular=titular
-        else:
-            self.__titular=""
-            print("NO ES UN TITULAR VÁLIDO")
-
-    @cantidad.setter
-    def cantidad(self,cantidad,bonificacion):
-        self.__cantidad=cantidad*bonificacion/100
-
-
     def retirar(self,importe):
-        if(importe>0 and esTitularValido()):
-            self.__cantidad=self.__cantidad-importe
+        if(self.esTitularValido()):
+            super().retirar(importe)
         else:
-            self.__cantidad=self.__cantidad
+            print("No es un titular válido. No puede retirar dinero de esta cuenta.")
+       
 
     def ingresar(self,importe):
-        if(importe<0):
-            self.__cantidad=self.__cantidad
-        else:
-            self.__cantidad=self.__cantidad+importe 
+        super().ingresar(importe)
     
     def mostrar(self):
-        return "Cuenta joven"+"\nTitular:"*self.__titular.mostrar()+"\nBonificacion:"+self.__bonificacion+"%"
+        return "Cuenta joven"+"\nTitular: "+super().titular.mostrar()+"\nBonificacion:"+str(self.__bonificacion)+"%"+"\nCantidad:"+str((super().cantidad))+"€"
 
 
 
-
-
-
-"""nombre=(str(input("Nombre:")))
-edad=(str(input("Edad:")))
-dni=(str(input("DNI:")))
-persona=Persona(nombre,edad,dni)
-persona2=Persona()
-persona3=Persona("juan")"""
-
-nombre=(str(input("Nombre:")))
-edad=(str(input("Edad:")))
-dni=(str(input("DNI:")))
-persona=Persona(nombre,edad,dni)
-
-cuenta=Cuenta(persona)
-
-print(cuenta.mostrar())
-"""
-print(persona.mostrar())
-print(persona2.mostrar())
-print(persona3.mostrar())"""

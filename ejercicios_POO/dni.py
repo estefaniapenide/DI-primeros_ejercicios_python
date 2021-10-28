@@ -1,4 +1,3 @@
-
 class Dni:
     def __init__(self,numero):
         self.numero=numero
@@ -27,4 +26,3 @@ class Dni:
 
     def mostrar(self):
         return self.numero+self.letra
-
