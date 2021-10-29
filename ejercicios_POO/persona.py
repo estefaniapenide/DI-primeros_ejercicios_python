@@ -43,6 +43,9 @@ class Persona:
             dniCorrecto=Dni(numero)
             if(dniCorrecto.letra==letra):
                 self.__dni=dni
+            else:
+                self.__dni="*FALTA DNI*"
+                print("DNI INCORRECTO")
         else:
             self.__dni="*FALTA DNI*"
             print("DNI INCORRECTO")

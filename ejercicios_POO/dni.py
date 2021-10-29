@@ -25,4 +25,4 @@ class Dni:
         return self.__letra
 
     def mostrar(self):
-        return self.numero+self.letra
+        return str(self.__numero)+self.__letra
